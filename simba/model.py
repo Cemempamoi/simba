@@ -5,7 +5,6 @@ from copy import deepcopy
 from torch import nn
 import torch
 from torch import optim
-import torch.nn.functional as F
 
 from simba.util import check_and_initialize_data, generate_A_Hurwitz, normalize, inverse_normalize, elapsed_timer, make_tensors, break_trajectories, put_in_batch_form, format_elapsed_time
 from simba.functions import matlab_baselines, identify_baselines
