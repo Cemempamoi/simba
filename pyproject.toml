@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "simba"
+version = "0.1.0"
+description = ""
+authors = ["Loris Di Natale <loris.dinatale@empa.ch>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+numpy = "^1.23.2"
+jupyterlab = "^3.4.6"
+torch = "==1.12.1"
+scipy = "^1.9.1"
+pandas = "^1.4.4"
+control = "^0.9.3.post2"
+future = "^0.18.3"
+slycot = "^0.5.3"
+casadi = "^3.5.5.post2"
+opencv-python = "^4.7.0.72"
+matlabengine = "^9.14.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
