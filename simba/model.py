@@ -5,6 +5,7 @@ from copy import deepcopy
 from torch import nn
 import torch
 from torch import optim
+import torch.nn.functional as F
 
 from simba.util import check_and_initialize_data, generate_A_Hurwitz, normalize, inverse_normalize, elapsed_timer, make_tensors, break_trajectories, put_in_batch_form, format_elapsed_time
 from simba.functions import matlab_baselines, identify_baselines
@@ -803,7 +804,10 @@ class SIMBaWrapper(SIMBa):
 
     def check_loaded_run(self):
         for key, value in self.loaded_params.items():
-            if value != self.params[key]:
+            if isinstance(value, np.ndarray) or isinstance(self.params[key], np.ndarray):
+                if (value != self.params[key]).any():
+                    print(f"Warning: loaded value for {key}: {value} doesn't correspond to the current one: {self.params[key]}") 
+            elif value != self.params[key]:
                 print(f"Warning: loaded value for {key}: {value} doesn't correspond to the current one: {self.params[key]}") 
         if self.data is not None:
             for x, y in zip(self.data, self.loaded_data):
