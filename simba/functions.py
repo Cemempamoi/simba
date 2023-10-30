@@ -324,10 +324,7 @@ def matlab_baselines(path_to_matlab, names, times, train_ids, validation_ids, te
 
     return matrices, names, times, train_ids, validation_ids, test_ids
 
-def matlab_sub(path_to_matlab, U, U_val, U_test, X, X_val, X_test):
-    eng = matlab.engine.start_matlab()
-    if path_to_matlab is not None:
-            eng.cd(path_to_matlab, nargout=0)
+def matlab_sub(eng, U, U_val, U_test, X, X_val, X_test):
 
     m_U = matlab.double(U.squeeze().detach().numpy().T)
     m_U_val = matlab.double(U_val.squeeze().detach().numpy().T)
@@ -336,8 +333,7 @@ def matlab_sub(path_to_matlab, U, U_val, U_test, X, X_val, X_test):
     m_X_val = matlab.double(X_val.squeeze().detach().numpy().T)
     m_X_test = matlab.double(X_test.squeeze().detach().numpy().T)
 
-    A_ls, B_ls, A_SUB, B_SUB = eng.SUB(m_U, m_U_val, m_U_test, m_X, m_X_val, m_X_test, nargout=4)
-    eng.quit() 
+    A_ls, B_ls, A_SUB, B_SUB = eng.SUB(m_U, m_U_val, m_U_test, m_X, m_X_val, m_X_test, nargout=4)    
 
     A_ls = torch.tensor(np.array(A_ls), dtype=torch.float64)
     B_ls = torch.tensor(np.array(B_ls), dtype=torch.float64)
@@ -345,3 +341,16 @@ def matlab_sub(path_to_matlab, U, U_val, U_test, X, X_val, X_test):
     B_sub = torch.tensor(np.array(B_SUB), dtype=torch.float64)
 
     return A_ls, B_ls, A_sub, B_sub
+
+def findstate(eng, U, Y, simba):
+    m_U = matlab.double(U.squeeze().detach().numpy())
+    m_Y = matlab.double(Y.squeeze().detach().numpy())
+    A = simba.A.detach().numpy()
+    B = simba.B.detach().numpy()
+    C = simba.C.detach().numpy()
+    D = simba.D.detach().numpy()
+    Ts = 1
+    x0, y_est = eng.find_x0(m_U, m_Y, Ts, A, B, C, D, nargout=2)
+    x0 = torch.tensor(np.array(x0), dtype=torch.float64)
+    y_est = torch.tensor(np.array(y_est), dtype=torch.float64).unsqueeze(0)
+    return x0, y_est
