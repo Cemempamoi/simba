@@ -1,7 +1,9 @@
 # SIMBa
 ## System Identification Methods with Backpropagation
 
-Loris Di Natale, Muhammad Zakwan, Bratislav Svetozarevic, Philipp Heer, Giancarlo Ferrari Trecate, Colin Jones
+**SIMBa** (**S**ystem **I**dentification **M**ethods leveraging **B**ackpropagation) is an open-source toolbox leveraging Pytorch's Automatic Differentiation framework for stable state-space linear SysID. It allows the user to incorporate prior knowledge (like sparsity patterns of the state-space matrices) during the identification procedure.
+
+It was first presented in [Stable Linear Subspace Identification: A Machine Learning Approach](https://arxiv.org/pdf/2311.03197.pdf) and subsequently extended in [SIMBa: System Identification Methods leveraging Backpropagation](https://arxiv.org/pdf/2311.13889.pdf).
 
 ## Compatibility with matlab
 If matlab is installed on your machine, the code will try to use it.  
@@ -20,4 +22,8 @@ To correct it, you'll need to go to `timeresp.py` in the library, typically loca
 
 ## Contact
 
-For more information, please contact loris.dinatale@empa.ch.
+This project is jointly led by Loris Di Natale and Muhammad Zakwan, with the participation of Bratislav Svetozarevic, Philipp Heer, Giancarlo Ferrari Trecate, and Colin N. Jones.  
+Urban Energy Systems Lab, Empa, Switzerland  
+Laboratoire d'Automatique, EPFL, Switzerland  
+
+For more information, please contact loris.dinatale@alumni.epfl.ch
