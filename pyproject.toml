@@ -2,7 +2,7 @@
 name = "simba"
 version = "0.1.0"
 description = ""
-authors = ["Loris Di Natale <loris.dinatale@empa.ch>"]
+authors = ["Loris Di Natale <loris.dinatale@aluni.epfl.ch>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

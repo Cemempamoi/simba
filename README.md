@@ -9,8 +9,8 @@ SIMBa is available on pypi, it can be installed with `pip install simbapy`.
 Alternatively, you can clone this github repository to use simba locally.
 
 ## Compatibility with matlab
-If matlab is installed on your machine, the code will try to use it.  
-It will ask for the `System Identification Toolbox` and `Symbolic Math Toolbox`.  
+If matlab is installed on your machine, you can install `matlabengine`. If you are on the latest version of MATLAB, `pip install matlabengine` works, otherwise you might need to install an older version of matlabengine. See [here](https://pypi.org/project/matlabengine) the supported version of MATLAB.  
+SIMBa needs access the `System Identification Toolbox` and `Symbolic Math Toolbox` in MATLAB.  
 You can disable the use of matlab by overwriting `IS_MATLAB` in `simba.parameters`
 
 ## Project status
