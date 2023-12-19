@@ -114,6 +114,11 @@ def check_parameters(parameters):
         if parameters['mask_B'] is not None:
             print('Warning, the system is autonomous but mask_B has been provided. It will not be used. Set autonomous=False if that the desired behavior.')
 
+    if (parameters['A_init'] is None) & (parameters['B_init'] is None) & (parameters['C_init'] is None) & (parameters['D_init'] is None) & (parameters['mask_A'] is None) & (parameters['mask_B'] is None) & (parameters['mask_C'] is None) & (parameters['mask_D'] is None):
+        parameters['prior_knowledge'] = False
+    else:
+        parameters['prior_knowledge'] = True
+
     # Check which stability criterion to use
     if parameters['stable_A']:
         assert not (parameters['LMI_A'] and parameters['naive_A']), 'Only one of the LMI or naive approach can be used to stabilize A, modify either naive_A or LMI_A.'
