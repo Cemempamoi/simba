@@ -212,6 +212,32 @@ def generate_A_Hurwitz(nx):
             continue
     return A
 
+def voss_noise(nrows, ncols=16):
+    """Generates pink noise using the Voss-McCartney algorithm.
+    
+    nrows: number of values to generate
+    rcols: number of random sources to add
+    
+    returns: NumPy array
+    """
+    array = np.empty((nrows, ncols))
+    array.fill(np.nan)
+    array[0, :] = np.random.random(ncols)
+    array[:, 0] = np.random.random(nrows)
+    
+    # the total number of changes is nrows
+    n = nrows
+    cols = np.random.geometric(0.5, n)
+    cols[cols >= ncols] = 0
+    rows = np.random.randint(nrows, size=n)
+    array[rows, cols] = np.random.random(n)
+
+    df = pd.DataFrame(array)
+    df.fillna(method='ffill', axis=0, inplace=True)
+    total = df.sum(axis=1)
+
+    return total.values
+
 def normalize(data, min_=None, diff=None):
     if min_ is None:
         min_ = data.min(axis=0, keepdim=True).values.min(axis=1, keepdim=True).values
