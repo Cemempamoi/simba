@@ -1,17 +1,16 @@
 [tool.poetry]
 name = "simbapy"
-version = "0.3.0"
+version = "0.4.1"
 description = "System identification Methods leveraging Backpropagation"
 authors = ["Loris Di Natale <loris.dinatale@netplus.ch>"]
 readme = "README.md"
 packages = [{ include = "simba" }, { include = "mat" }]
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
-numpy = ">=2.2.2,<3.0.0"
-torch = ">=2.6.0,<3.0.0"
-scipy = ">=1.15.1,<2.0.0"
-matlabengine = "==24.2.2"
+python = "^3.10"
+numpy = "^2.2.2"
+torch = "^2.6.0"
+scipy = "^1.15.1"
 
 [build-system]
 requires = ["poetry-core"]
