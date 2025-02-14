@@ -5,6 +5,7 @@
 
 ## Intallation
 SIMBa is available on pypi, it can be installed with `pip install simbapy`.  
+Note that this will NOT install SIPPY to avoid compatibility issues. SIMBa will only try to use Matlab for initilization by default, but you can install SIPPY separately.
 
 Alternatively, you can clone this github repository to use simba locally.
 
